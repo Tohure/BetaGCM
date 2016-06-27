@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BetaGCM</string>
+    <string name="preferences">PreferencesFile</string>
+    <string name="user_mail">User Mail</string>
+    <string name="end_point">CreateEndpoint</string>
+    <string name="topic_subscription">SubscribeToTopic</string>
+    <string name="first_launch">First Launch</string>
+    <string name="project_number">212043494342</string>
+</resources>
