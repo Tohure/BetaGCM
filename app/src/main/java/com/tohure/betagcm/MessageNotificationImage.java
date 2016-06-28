@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
+
 /**
  * Helper class for showing and canceling message image
  * notifications.
@@ -41,20 +42,23 @@ public class MessageNotificationImage {
      *
      * @see #cancel(Context)
      */
-    public static void notify(final Context context, final String exampleString, final int number) {
+    public static void notify(final Context context, final String titulo, final String cuerpo, final String link,final Bitmap image_rpp, final int number) {
         final Resources res = context.getResources();
 
         // This image is used as the notification's large icon (thumbnail) when
         // the notification is collapsed, and as the big picture to show when
         // the notification is expanded.
+
+        //get the bitmap to show in notification bar
+
+
+
         final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.example_picture);
 
 
-        final String ticker = exampleString;
-        final String title = res.getString(
-                R.string.message_image_notification_title_template, exampleString);
-        final String text = res.getString(
-                R.string.message_image_notification_placeholder_text_template, exampleString);
+        final String ticker = cuerpo;
+        final String title = titulo;
+        final String text = cuerpo;
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
 
@@ -83,7 +87,7 @@ public class MessageNotificationImage {
 
                 // Show a number. This is useful when stacking notifications of
                 // a single type.
-                .setNumber(number)
+                //.setNumber(number)
 
                 // If this notification relates to a past or upcoming event, you
                 // should set the relevant time information using the setWhen
@@ -100,14 +104,14 @@ public class MessageNotificationImage {
                         PendingIntent.getActivity(
                                 context,
                                 0,
-                                new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com")),
+                                new Intent(Intent.ACTION_VIEW, Uri.parse(link)),
                                 PendingIntent.FLAG_UPDATE_CURRENT))
 
                 // Show an expanded photo on devices running Android 4.1 or
                 // later.
-                .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(picture)
+                .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image_rpp)
                         .setBigContentTitle(title)
-                        .setSummaryText("Dummy summary text"))
+                        .setSummaryText("RPP Noticias"))
 
                 // Example additional actions for this notification. These will
                 // only show on devices running Android 4.1 or later, so you
@@ -146,10 +150,7 @@ public class MessageNotificationImage {
         }
     }
 
-    /**
-     * Cancels any notifications of this type previously shown using
-     * {@link #notify(Context, String, int)}.
-     */
+
     @TargetApi(Build.VERSION_CODES.ECLAIR)
     public static void cancel(final Context context) {
         final NotificationManager nm = (NotificationManager) context
@@ -160,4 +161,6 @@ public class MessageNotificationImage {
             nm.cancel(NOTIFICATION_TAG.hashCode());
         }
     }
+
+
 }
