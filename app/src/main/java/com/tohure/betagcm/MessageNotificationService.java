@@ -1,20 +1,56 @@
 package com.tohure.betagcm;
 
-import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
-public class MessageNotificationService extends IntentService {
+public class MessageNotificationService extends Service {
 
-
-    public MessageNotificationService(String name) {
-        super(name);
-    }
+    private String link = "", image = "", cuerpo = "",title = "", type_alert = "";
 
     @Override
-    protected void onHandleIntent(Intent intent) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
 
+       if (intent != null){
+           Bundle extras = intent.getExtras();
+           for (String key : extras.keySet()){
+               switch (key){
+                   case "cuerpo": cuerpo = extras.getString(key); break;
+                   case "imagen": image = extras.getString(key); break;
+                   case "titulo": title = extras.getString(key); break;
+                   case "link": link  = extras.getString(key); break;
+                   case "tipo": type_alert = extras.getString(key); break;
+               }
+           }
+
+
+           if (title != null && !title.equals("") && image != null && !image.equals("")){
+               launchNotificationWithImage();
+               stopSelf();
+           }else{
+               if (title != null && !title.equals("") && cuerpo != null && !cuerpo.equals("")){
+                   launchNotificationWithText();
+                   stopSelf();
+               }
+           }
+       }
+        return START_STICKY;
+    }
+
+    private void launchNotificationWithText() {
+
+    }
+
+    private void launchNotificationWithImage() {
+
+    }
+
+    @Nullable
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
     }
 }
