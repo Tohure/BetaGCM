@@ -1,8 +1,10 @@
-package com.tohure.betagcm;
+package com.tohure.betagcm.receiver;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+
+import com.tohure.betagcm.MessageNotificationService;
 
 public class ExternalReceiver extends BroadcastReceiver {
     @Override

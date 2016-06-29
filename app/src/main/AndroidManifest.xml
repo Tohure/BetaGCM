@@ -44,7 +44,7 @@
         </service>
 
         <receiver
-            android:name=".ExternalReceiver"
+            android:name=".receiver.ExternalReceiver"
             android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -54,6 +54,39 @@
                 <category android:name="com.tohure.betagcm" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".notifications_wear.stub_wear.MyStubBroadcastActivity"
+            android:label="MyStubBroadcastActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".notifications_wear.WearTextNotification"
+            android:allowEmbedded="true"
+            android:exported="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.DeviceDefault.Light" />
+
+        <activity
+            android:name=".notifications_wear.stub_wear.MyStubBroadcastActivityI"
+            android:label="MyStubBroadcastActivityI">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".notifications_wear.WearImageNotification"
+            android:allowEmbedded="true"
+            android:exported="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.DeviceDefault.Light"></activity>
+
     </application>
 
 </manifest>

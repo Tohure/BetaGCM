@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.i("thr", "Entro 0.1");
             }
         }else{
-            Toast.makeText(this,"Por favor ingrese un DNI correcto",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Por favor ingrese email correcto",Toast.LENGTH_SHORT).show();
         }
     }
 

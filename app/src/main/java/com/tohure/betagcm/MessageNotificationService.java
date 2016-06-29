@@ -7,7 +7,9 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
+
+import com.tohure.betagcm.notifications_mobile.NotificationImage;
+import com.tohure.betagcm.notifications_mobile.NotificationText;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,7 +19,6 @@ import java.net.URL;
 public class MessageNotificationService extends Service {
 
     private String link = "", image = "", cuerpo = "",title = "", type_alert = "";
-    Bitmap Images;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -38,7 +39,7 @@ public class MessageNotificationService extends Service {
            new Thread(new Runnable() {
                public void run() {
                    if (title != null && !title.equals("") && image != null && !image.trim().equals("")){
-                       getImageLink(image);
+                       launchNotificationWithImage(getBitmapFromURL(image));
                        stopSelf();
                    }else{
                        if (title != null && !title.equals("") && cuerpo != null && !cuerpo.equals("")){
@@ -48,23 +49,16 @@ public class MessageNotificationService extends Service {
                    }
                }
            }).start();
-
-
        }
         return START_STICKY;
     }
 
-    private void getImageLink(String link_image) {
-        Images = getBitmapFromURL(link_image);
-        launchNotificationWithImage(Images);
-    }
-
     private void launchNotificationWithText() {
-        MessageNotificationText.notify(this,title,cuerpo,link,0);
+        NotificationText.notify(this,title,cuerpo,link,0);
     }
 
     private void launchNotificationWithImage(Bitmap images) {
-        MessageNotificationImage.notify(this,title,cuerpo,link,images,0);
+        NotificationImage.notify(this,title,cuerpo,link,images,0);
     }
 
     public static Bitmap getBitmapFromURL(String src) {

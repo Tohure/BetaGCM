@@ -1,4 +1,4 @@
-package com.tohure.betagcm;
+package com.tohure.betagcm.notifications_mobile;
 
 import android.annotation.TargetApi;
 import android.app.Notification;
@@ -13,52 +13,16 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
+import com.tohure.betagcm.R;
 
-/**
- * Helper class for showing and canceling message image
- * notifications.
- * <p/>
- * This class makes heavy use of the {@link NotificationCompat.Builder} helper
- * class to create notifications in a backward-compatible way.
- */
-public class MessageNotificationImage {
-    /**
-     * The unique identifier for this type of notification.
-     */
+public class NotificationImage {
+
     private static final String NOTIFICATION_TAG = "MessageImage";
 
-    /**
-     * Shows the notification, or updates a previously shown notification of
-     * this type, with the given parameters.
-     * <p/>
-     * TODO: Customize this method's arguments to present relevant content in
-     * the notification.
-     * <p/>
-     * TODO: Customize the contents of this method to tweak the behavior and
-     * presentation of message image notifications. Make
-     * sure to follow the
-     * <a href="https://developer.android.com/design/patterns/notifications.html">
-     * Notification design guidelines</a> when doing so.
-     *
-     * @see #cancel(Context)
-     */
     public static void notify(final Context context, final String titulo, final String cuerpo, final String link,final Bitmap image_rpp, final int number) {
         final Resources res = context.getResources();
 
-        // This image is used as the notification's large icon (thumbnail) when
-        // the notification is collapsed, and as the big picture to show when
-        // the notification is expanded.
-
-        //get the bitmap to show in notification bar
-
-
-
-        final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.example_picture);
-
-
-        final String ticker = cuerpo;
-        final String title = titulo;
-        final String text = cuerpo;
+        final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.logo_flat);
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
 
@@ -68,9 +32,9 @@ public class MessageNotificationImage {
 
                 // Set required fields, including the small icon, the
                 // notification title, and text.
-                .setSmallIcon(R.drawable.ic_stat_message_image)
-                .setContentTitle(title)
-                .setContentText(text)
+                .setSmallIcon(R.drawable.ic_image_notification)
+                .setContentTitle(titulo)
+                .setContentText(cuerpo)
 
                 // All fields below this line are optional.
 
@@ -83,23 +47,8 @@ public class MessageNotificationImage {
                 .setLargeIcon(picture)
 
                 // Set ticker text (preview) information for this notification.
-                .setTicker(ticker)
+                .setTicker(cuerpo)
 
-                // Show a number. This is useful when stacking notifications of
-                // a single type.
-                //.setNumber(number)
-
-                // If this notification relates to a past or upcoming event, you
-                // should set the relevant time information using the setWhen
-                // method below. If this call is omitted, the notification's
-                // timestamp will by set to the time at which it was shown.
-                // TODO: Call setWhen if this notification relates to a past or
-                // upcoming event. The sole argument to this method should be
-                // the notification timestamp in milliseconds.
-                //.setWhen(...)
-
-                // Set the pending intent to be initiated when the user touches
-                // the notification.
                 .setContentIntent(
                         PendingIntent.getActivity(
                                 context,
@@ -110,14 +59,9 @@ public class MessageNotificationImage {
                 // Show an expanded photo on devices running Android 4.1 or
                 // later.
                 .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image_rpp)
-                        .setBigContentTitle(title)
+                        .setBigContentTitle(titulo)
                         .setSummaryText("RPP Noticias"))
 
-                // Example additional actions for this notification. These will
-                // only show on devices running Android 4.1 or later, so you
-                // should ensure that the activity in this notification's
-                // content intent provides access to the same actions in
-                // another way.
                 .addAction(
                         R.drawable.ic_action_stat_share,
                         res.getString(R.string.action_share),
@@ -126,13 +70,8 @@ public class MessageNotificationImage {
                                 0,
                                 Intent.createChooser(new Intent(Intent.ACTION_SEND)
                                         .setType("text/plain")
-                                        .putExtra(Intent.EXTRA_TEXT, "Dummy text"), "Dummy title"),
+                                        .putExtra(Intent.EXTRA_TEXT, link), "Comparte en tus redes!"),
                                 PendingIntent.FLAG_UPDATE_CURRENT))
-                .addAction(
-                        R.drawable.ic_action_stat_reply,
-                        res.getString(R.string.action_reply),
-                        null)
-
                 // Automatically dismiss the notification when it is touched.
                 .setAutoCancel(true);
 
