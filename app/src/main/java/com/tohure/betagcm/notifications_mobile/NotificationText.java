@@ -56,6 +56,8 @@ public class NotificationText {
                                 new Intent(Intent.ACTION_VIEW, Uri.parse(link)),
                                 PendingIntent.FLAG_UPDATE_CURRENT))
 
+                .extend(new NotificationCompat.WearableExtender())
+
                 // Show expanded text content on devices running Android 4.1 or
                 // later.
                 .setStyle(new NotificationCompat.BigTextStyle()

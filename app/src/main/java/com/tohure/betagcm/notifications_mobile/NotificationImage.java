@@ -56,6 +56,8 @@ public class NotificationImage {
                                 new Intent(Intent.ACTION_VIEW, Uri.parse(link)),
                                 PendingIntent.FLAG_UPDATE_CURRENT))
 
+                .extend(new NotificationCompat.WearableExtender())
+
                 // Show an expanded photo on devices running Android 4.1 or
                 // later.
                 .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(image_rpp)
