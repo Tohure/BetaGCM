@@ -56,7 +56,7 @@ public class NotificationImage {
                                 new Intent(Intent.ACTION_VIEW, Uri.parse(link)),
                                 PendingIntent.FLAG_UPDATE_CURRENT))
 
-                .extend(new NotificationCompat.WearableExtender())
+                //.extend(new NotificationCompat.WearableExtender().addAction(action))
 
                 // Show an expanded photo on devices running Android 4.1 or
                 // later.
@@ -66,7 +66,7 @@ public class NotificationImage {
 
                 .addAction(
                         R.drawable.ic_action_stat_share,
-                        res.getString(R.string.action_share),
+                        "Comparte!",
                         PendingIntent.getActivity(
                                 context,
                                 0,

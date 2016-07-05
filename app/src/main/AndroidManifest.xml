@@ -55,38 +55,6 @@
             </intent-filter>
         </receiver>
 
-        <activity
-            android:name=".notifications_wear.stub_wear.MyStubBroadcastActivity"
-            android:label="MyStubBroadcastActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".notifications_wear.WearTextNotification"
-            android:allowEmbedded="true"
-            android:exported="true"
-            android:taskAffinity=""
-            android:theme="@android:style/Theme.DeviceDefault.Light" />
-
-        <activity
-            android:name=".notifications_wear.stub_wear.MyStubBroadcastActivityI"
-            android:label="MyStubBroadcastActivityI">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".notifications_wear.WearImageNotification"
-            android:allowEmbedded="true"
-            android:exported="true"
-            android:taskAffinity=""
-            android:theme="@android:style/Theme.DeviceDefault.Light"></activity>
-
     </application>
 
 </manifest>
